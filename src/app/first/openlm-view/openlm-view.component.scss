@@ -1,0 +1,48 @@
+.report-content {
+    height: auto;
+    padding: 20px;
+    background: aquamarine;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+.container-div{
+    width: 70vw;
+}
+
+.div-title{
+    font-size:12px;
+    color:grey;
+    width: 100%;
+    margin-top:5px;
+    display: flex;
+}
+
+.card-header{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.input-class{
+    display: flex;
+    justify-content: space-around;
+}
+
+.padding-header{
+    padding-top:7px;
+  }
+
+.icons_vertical{
+    display: flex;
+    align-items: center;
+}
+
+.jc-space-around{
+    justify-content: space-around;
+}
+
+.icon-pointer{
+    cursor: pointer;
+}

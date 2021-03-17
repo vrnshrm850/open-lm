@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'openlm-form',
   templateUrl: './openlm-form.component.html',
@@ -15,6 +15,7 @@ export class OpenlmFormComponent implements OnInit {
   formData: any = [];
   editMode: boolean;
   entryStep: any;
+
   constructor(public router: Router) {}
 
   ngOnInit(): void {}
@@ -55,19 +56,65 @@ export class OpenlmFormComponent implements OnInit {
   cancelEdit(i) {
     this.formData[i].editMode = false;
   }
-  viewMode(i) {
-    this.router.navigate(['openlm-view']);
+  viewMode(formData, i) {
+    this.router.navigate([
+      'openlm-view',
+      formData[i].title,
+      formData[i].author,
+      formData[i].price,
+    ]);
     this.formData[i].editMode = false;
   }
 
-  save(i) {
-    // (<any>global).localStorage = {
-    //   getItem(key: string) {
-    //     return appSettings.getString(key);
-    //   },
-    //   setItem(key: string, value: string) {
-    //     return appSettings.setString(key, value);
-    //   },
-    // };
+  save(formData,i) {
+    // to save the data in localstorage. Not implemented yet
+    this.setDataToLocalStorage('appData', formData);
   }
+
+  // Common functions need to go in common funtion file....
+  isEmptyArray(data: any[]): any {
+    if (data instanceof Array && data.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  isEmptyString(val: any): any {
+    if (typeof val === 'string') {
+      if (val.trim() === '') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  isUndefinedOrNullEmpty(val: any): any {
+    let status: any = false;
+    if (this.isEmptyString(val)) {
+      status = true;
+    } else if (this.isEmptyArray(val)) {
+      status = true;
+    } else if (val === null) {
+      status = true;
+    } else {
+      if (val === undefined || val === 'undefined') {
+        status = true;
+      } else {
+        status = false;
+      }
+    }
+    return status;
+  }
+  setDataToLocalStorage(name: any, val: any): any {
+    if (!this.isUndefinedOrNullEmpty(val)) {
+      if (_.isString(val)) {
+        localStorage.setItem(name, val);
+      } else {
+        localStorage.setItem(name, JSON.stringify(val));
+      }
+    }
+  }
+  
 }

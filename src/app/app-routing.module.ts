@@ -5,7 +5,10 @@ import { OpenlmViewComponent } from './first/openlm-view/openlm-view.component';
 
 const routes: Routes = [
   { path: '', component: FirstComponent },
-  { path: 'openlm-view:id', component: OpenlmViewComponent },
+  {
+    path: 'openlm-view/:title/:author/:price',
+    component: OpenlmViewComponent,
+  },
 ];
 
 @NgModule({

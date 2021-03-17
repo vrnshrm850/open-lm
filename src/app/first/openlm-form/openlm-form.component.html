@@ -98,11 +98,11 @@
                             
                             <button mat-icon-button *ngIf="r.editMode" [disabled]="!openLmEditForm.form.valid"
                                 style="width: 25px;" (click)="cancelEdit(i)">
-                                <mat-icon class="material-icons create-icon icon-pointer" style="vertical-align: middle;" (click)="save(i)">
+                                <mat-icon class="material-icons create-icon icon-pointer" style="vertical-align: middle;" (click)="save(formData,i)">
                                     save
                                 </mat-icon>
                             </button>
-                            <mat-icon class="material-icons delete-icon icon-pointer"  style="vertical-align: middle;" (click)="viewMode(i)">
+                            <mat-icon class="material-icons delete-icon icon-pointer"  style="vertical-align: middle;" (click)="viewMode(formData,i)">
                             preview
                             </mat-icon>
                             <mat-icon class="material-icons delete-icon icon-pointer" (click)="delete_row(i)">

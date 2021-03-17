@@ -1,1 +1,30 @@
-<p>openlm-view works!</p>
+<mat-card class="report-content">
+    <div layout-gt-xs="row" class="mt-10">
+    <div flex="100" class="center">
+        <div class="container-div">
+    
+            <mat-card class="mt-10 m-0">
+                <span class="card-header">CRUD table application</span>
+                <div layout="row" class="div-title w-100" flex="100" flex-xs="100" flex-sm="100">
+                    <div class=" padding-header w-25">Title</div>
+                    <div class=" padding-header w-25">Author</div>
+                    <div class=" padding-header w-25">Price</div>
+                </div>
+                <div>
+                    <hr class="title_hr mt-10">
+                     <div fxLayout="row" flex="100" class="task-row w-100">
+                          <div class=" padding-header w-25"> {{title}}
+                            </div>
+                            <div class=" padding-header w-25"> {{author}}
+                            </div>
+                            <div class=" padding-header w-25"> {{price}}
+                            </div>
+                     </div>
+                     
+                </div>
+            </mat-card>
+            <button mat-raised-button color="primary" [routerLink]="['/']">Go Back</button>
+        </div>
+    </div>
+  </div>
+</mat-card>
