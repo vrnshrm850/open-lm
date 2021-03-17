@@ -1,0 +1,117 @@
+<div class="container-div">
+    
+    <mat-card class="mt-10 m-0">
+        <span class="card-header">CRUD table application</span>
+        <div layout="row" class="div-title w-100" flex="100" flex-xs="100" flex-sm="100">
+            <div class=" padding-header w-20">#</div>
+            <div class=" padding-header w-20">Title</div>
+            <div class=" padding-header w-20">Author</div>
+            <div class=" padding-header w-20">Price</div>
+            <div class=" padding-header w-20">Action</div>
+        </div>
+        <div>
+            <hr class="title_hr mt-10">
+            <form #openLmForm="ngForm" class="ngForm">
+                <div fxLayout="row" flex="100" class="task-row w-100">
+                    <div  layout="row" class="w-20 padding-header"></div>
+                    <div class="padding-header w-20"  layout="row">
+                        <mat-form-field appearance="outline" class="color_code">
+                            <input matInput name="title" #title id="title"
+                                #titleControl="ngModel" [(ngModel)]="formDataModel.title"
+                                class="fix-space" placeholder="Enter title" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="padding-header w-20"  layout="row">
+                        <mat-form-field appearance="outline">
+                            <input matInput name="author" #author id="author"
+                                #authorControl="ngModel" [(ngModel)]="formDataModel.author"
+                                class="fix-space" placeholder="Enter author name" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="padding-header w-20"  layout="row">
+                        <mat-form-field appearance="outline">
+                            <input matInput name="price" #price id="price" type="number"
+                                #priceControl="ngModel" [(ngModel)]="formDataModel.price"
+                                class="fix-space" placeholder="Enter price" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="padding-header w-20" flex="25">
+                        <button mat-mini-fab class="add_button" aria-label="Example icon button with a add icon"
+                            [disabled]="!openLmForm.form.valid" (click)="add_row(openLmForm)">
+                            <mat-icon class="add_icon">add</mat-icon>
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-height">
+            <form #openLmEditForm="ngForm" class="ngForm">
+                <div *ngFor="let r of formData; let i = index;">
+                    <hr class="title_hr">
+                    <div fxLayout="row" flex="100" class="task-row w-100">
+                        <div class="padding-header icons_vertical w-20" *ngIf="!r.editMode || r.editMode"><span
+                            class="text_span">#{{r?.entryStep}}</span>
+                        </div>
+                        <div class="padding-header w-20" *ngIf="!r.editMode">
+                            <div> {{r?.title}} 
+                            </div>
+                        </div>
+                        <div class="padding-header w-20" *ngIf="r.editMode">
+                            <mat-form-field  >
+                                <input matInput id="titleEdit" #titleEdit
+                                    #titleEditControl="ngModel" required name="title"
+                                    [value]="r?.title" [(ngModel)]="r.title"
+                                    placeholder="Enter title">
+                            </mat-form-field>
+                        </div>
+                         <div class="padding-header w-20" *ngIf="!r.editMode">
+                            <div> {{r?.author}} 
+                            </div>
+                        </div>
+                        <div class="padding-header w-20" *ngIf="r.editMode">
+                            <mat-form-field  >
+                                <input matInput id="authorEdit" #authorEdit
+                                    #titleEditControl="ngModel" required name="author"
+                                    [value]="r?.author" [(ngModel)]="r.author"
+                                    placeholder="Enter author name">
+                            </mat-form-field>
+                        </div>
+                         <div class="padding-header w-20" *ngIf="!r.editMode">
+                            <div> {{r?.price}} 
+                            </div>
+                        </div>
+                        <div class="padding-header w-20" *ngIf="r.editMode">
+                            <mat-form-field >
+                                <input matInput id="priceEdit" #priceEdit
+                                    #priceEditControl="ngModel" required name="price"
+                                    [value]="r?.price" [(ngModel)]="r.price" type="number"
+                                    placeholder="Enter price">
+                            </mat-form-field>
+                        </div>
+                        <div class="padding-header icons_vertical w-20 jc-space-around">
+                            <mat-icon class="material-icons create-icon icon-pointer" style="vertical-align: middle;" *ngIf="!r.editMode"
+                                (click)="edit_row(i)">
+                                create
+                            </mat-icon>
+                            
+                            
+                            <button mat-icon-button *ngIf="r.editMode" [disabled]="!openLmEditForm.form.valid"
+                                style="width: 25px;" (click)="cancelEdit(i)">
+                                <mat-icon class="material-icons create-icon icon-pointer" style="vertical-align: middle;" (click)="save(i)">
+                                    save
+                                </mat-icon>
+                            </button>
+                            <mat-icon class="material-icons delete-icon icon-pointer"  style="vertical-align: middle;" (click)="viewMode(i)">
+                            preview
+                            </mat-icon>
+                            <mat-icon class="material-icons delete-icon icon-pointer" (click)="delete_row(i)">
+                                delete
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
